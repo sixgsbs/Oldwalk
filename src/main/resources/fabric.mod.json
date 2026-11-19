@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "oldwalk",
+  "version": "${version}",
+  "name": "Old Walk",
+  "description": "1.8 style backwards walking, sneak animation and blocking while walking backward. Nothing else.",
+  "environment": "client",
+  "entrypoints": { "client": ["com.oldwalk.OldWalkMod"] },
+  "mixins": ["oldwalk.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.17.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
