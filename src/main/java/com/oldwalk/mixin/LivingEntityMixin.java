@@ -32,7 +32,7 @@ public abstract class LivingEntityMixin {
         if (!(self instanceof Player)) return;
         boolean blocking = OldWalkConfig.uncapBlockingHeadRotation && self.isBlocking();
         if (OldWalkConfig.rotateBackwardsWalking || blocking) {
-            cir.setReturnValue(75.0F);
+            cir.setReturnValue(OldWalkConfig.headTurnLimit);
         }
     }
 }
