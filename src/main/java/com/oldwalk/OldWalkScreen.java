@@ -27,7 +27,7 @@ public class OldWalkScreen extends Screen {
     protected void init() {
         int x = this.width / 2 - W / 2 + 10;
         int bw = W - 20;
-        panelTop = this.height / 2 - 90;
+        panelTop = Math.max(4, this.height / 2 - 105);
         int y = panelTop + 40;
 
         addToggle(x, y, bw, "Backwards walking",
@@ -45,16 +45,20 @@ public class OldWalkScreen extends Screen {
 
         addRenderableWidget(new LimitSlider(x, y + 76, bw, 20));
 
+        addRenderableWidget(Button.builder(Component.literal("Friend name colors..."),
+                        b -> this.minecraft.setScreen(new OldWalkFriendsScreen(this)))
+                .bounds(x, y + 104, bw, 20).build());
+
         addRenderableWidget(Button.builder(Component.literal("Reset to defaults"), b -> {
             OldWalkConfig.reset();
             OldWalkConfig.save();
             rebuildWidgets();
-        }).bounds(x, y + 104, bw / 2 - 2, 20).build());
+        }).bounds(x, y + 130, bw / 2 - 2, 20).build());
 
         addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, b -> onClose())
-                .bounds(x + bw / 2 + 2, y + 104, bw / 2 - 2, 20).build());
+                .bounds(x + bw / 2 + 2, y + 130, bw / 2 - 2, 20).build());
 
-        panelBottom = y + 150;
+        panelBottom = y + 176;
     }
 
     private void addToggle(int x, int y, int w, String name, String tip,
