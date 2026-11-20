@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "com.oldwalk.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["HumanoidModelMixin", "LivingEntityMixin"],
+  "injectors": { "defaultRequire": 1 }
+}
