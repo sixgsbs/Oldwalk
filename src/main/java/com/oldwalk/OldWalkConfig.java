@@ -11,17 +11,26 @@ public class OldWalkConfig {
     public static boolean rotateBackwardsWalking = true;
     public static boolean oldSneakAnimation = true;
     public static boolean uncapBlockingHeadRotation = true;
+    public static float headTurnLimit = 75.0F;
 
     private static class Data {
         boolean rotateBackwardsWalking = true;
         boolean oldSneakAnimation = true;
         boolean uncapBlockingHeadRotation = true;
+        float headTurnLimit = 75.0F;
     }
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private static Path file() {
         return FabricLoader.getInstance().getConfigDir().resolve("oldwalk.json");
+    }
+
+    public static void reset() {
+        rotateBackwardsWalking = true;
+        oldSneakAnimation = true;
+        uncapBlockingHeadRotation = true;
+        headTurnLimit = 75.0F;
     }
 
     public static void load() {
@@ -34,6 +43,7 @@ public class OldWalkConfig {
             rotateBackwardsWalking = d.rotateBackwardsWalking;
             oldSneakAnimation = d.oldSneakAnimation;
             uncapBlockingHeadRotation = d.uncapBlockingHeadRotation;
+            headTurnLimit = Math.max(30.0F, Math.min(90.0F, d.headTurnLimit));
             save();
         } catch (Exception e) {
             System.err.println("[oldwalk] could not read config, using defaults: " + e);
@@ -46,6 +56,7 @@ public class OldWalkConfig {
             d.rotateBackwardsWalking = rotateBackwardsWalking;
             d.oldSneakAnimation = oldSneakAnimation;
             d.uncapBlockingHeadRotation = uncapBlockingHeadRotation;
+            d.headTurnLimit = headTurnLimit;
             Files.writeString(file(), GSON.toJson(d));
         } catch (Exception e) {
             System.err.println("[oldwalk] could not save config: " + e);
