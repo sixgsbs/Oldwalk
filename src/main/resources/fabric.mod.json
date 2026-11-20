@@ -5,7 +5,10 @@
   "name": "Old Walk",
   "description": "1.8 style backwards walking, sneak animation and blocking while walking backward. Nothing else.",
   "environment": "client",
-  "entrypoints": { "client": ["com.oldwalk.OldWalkMod"] },
+  "entrypoints": {
+    "client": ["com.oldwalk.OldWalkMod"],
+    "modmenu": ["com.oldwalk.OldWalkModMenu"]
+  },
   "mixins": ["oldwalk.mixins.json"],
   "depends": {
     "fabricloader": ">=0.17.0",
